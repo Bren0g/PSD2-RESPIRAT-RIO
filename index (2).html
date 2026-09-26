@@ -1,0 +1,2168 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trilha Prática: Doenças Respiratórias e Sinais Vitais</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --secondary: #0d9488;
+      --secondary-light: #ccfbf1;
+      --accent: #6366f1;
+      --accent-light: #e0e7ff;
+      --danger: #ef4444;
+      --danger-dark: #b91c1c;
+      --danger-light: #fee2e2;
+      --warning: #f59e0b;
+      --warning-light: #fef3c7;
+      --success: #10b981;
+      --success-light: #d1fae5;
+      --dark: #0f172a;
+      --dark-card: #1e293b;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Progress Navigation */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .top-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #38bdf8;
+    }
+
+    .trail-tags {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .trail-tags::-webkit-scrollbar { display: none; }
+
+    .trail-tag-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .trail-tag-btn:hover, .trail-tag-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 80px 20px;
+    }
+
+    /* Intro Author Card */
+    .intro-author-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      border-left: 6px solid var(--primary);
+    }
+
+    .author-profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .author-avatar {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #0284c7, #0d9488);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+      flex-shrink: 0;
+    }
+
+    .badge-author {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .author-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+
+    .author-role {
+      font-size: 0.84rem;
+      color: #64748b;
+    }
+
+    .intro-message p {
+      font-size: 0.95rem;
+      color: #334155;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .intro-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .intro-highlight-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Hero Banner */
+    .hero-trail {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0d9488 100%);
+      color: #ffffff;
+      padding: 36px 30px;
+      border-radius: var(--radius);
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #7dd3fc;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .hero-trail h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .hero-trail p {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      max-width: 780px;
+      margin-bottom: 18px;
+    }
+
+    .quick-formula {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border-left: 4px solid #38bdf8;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #f0fdf4;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Station Card Container */
+    .station-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .station-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 14px;
+    }
+
+    .station-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .station-title h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .station-title p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Translator / Glossary widget */
+    .translator-widget {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 24px;
+    }
+
+    .translator-title {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .term-pill {
+      background: #ffffff;
+      border: 1px solid #dbeafe;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .term-pill .simple {
+      color: #64748b;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .term-pill .technical {
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    /* Interactive Simulator: Breathing lungs */
+    .simulator-box {
+      background: linear-gradient(145deg, #0f172a, #1e293b);
+      color: white;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 20px 0;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .sim-controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-sim {
+      background: #334155;
+      color: #e2e8f0;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-sim:hover {
+      background: #475569;
+    }
+
+    .btn-sim.active {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .sim-display {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 16px 0;
+    }
+
+    /* Lung graphic & animation */
+    .chest-container {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px dashed #475569;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .animated-lungs {
+      width: 100px;
+      height: 100px;
+      transition: all 0.3s;
+      transform-origin: center center;
+    }
+
+    /* Animation Classes */
+    @keyframes breatheNormal {
+      0%, 100% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 12px #38bdf8); }
+    }
+
+    @keyframes breatheFast {
+      0%, 100% { transform: scale(0.95); opacity: 0.85; }
+      50% { transform: scale(1.22); opacity: 1; filter: drop-shadow(0 0 16px #f87171); }
+    }
+
+    @keyframes breatheSlow {
+      0%, 100% { transform: scale(0.85); opacity: 0.6; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+    }
+
+    @keyframes breatheEffort {
+      0%, 100% { transform: scale(0.9) translateY(0); }
+      30% { transform: scale(1.25) translateY(-4px); filter: drop-shadow(0 0 16px #f59e0b); }
+      70% { transform: scale(0.92) translateY(2px); }
+    }
+
+    .breathe-normal { animation: breatheNormal 3.75s ease-in-out infinite; }
+    .breathe-fast { animation: breatheFast 1.8s ease-in-out infinite; }
+    .breathe-slow { animation: breatheSlow 7.5s ease-in-out infinite; }
+    .breathe-effort { animation: breatheEffort 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+    .sim-stats {
+      flex: 1;
+      min-width: 250px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+    }
+
+    .sim-stats h4 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rate-counter {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #38bdf8;
+      margin: 4px 0;
+    }
+
+    .sim-stats p {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    /* Interactive Alveoli Viewer */
+    .alveoli-tabs {
+      display: flex;
+      gap: 10px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+
+    .btn-alv {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .btn-alv:hover { background: #e2e8f0; }
+    .btn-alv.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .alv-card-display {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .alv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .alv-grid { grid-template-columns: 1fr; }
+    }
+
+    .alv-visual {
+      text-align: center;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .alv-text h4 {
+      font-size: 1.1rem;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .alv-text p {
+      font-size: 0.9rem;
+      color: #334155;
+      margin-bottom: 10px;
+    }
+
+    .highlight-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* Pathology Explorer Tabs */
+    .patho-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 20px;
+    }
+
+    .btn-patho {
+      background: #f1f5f9;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: #475569;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .btn-patho:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .btn-patho.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .patho-body {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .patho-body.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Anatomy of Disease Card (Didactic 4-step) */
+    .disease-summary {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .disease-headline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .disease-headline h3 {
+      font-size: 1.3rem;
+      color: #0f172a;
+    }
+
+    .analogy-banner {
+      background: #fffbeb;
+      border-left: 4px solid var(--warning);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #92400e;
+      margin-bottom: 16px;
+    }
+
+    .four-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .step-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .step-box.step-1 { border-top: 3px solid var(--primary); }
+    .step-box.step-2 { border-top: 3px solid var(--secondary); }
+    .step-box.step-3 { border-top: 3px solid var(--warning); }
+    .step-box.step-4 { border-top: 3px solid var(--danger); }
+
+    .step-box h5 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-box p, .step-box ul {
+      font-size: 0.86rem;
+      color: #334155;
+    }
+
+    .step-box ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    .step-box li {
+      margin-bottom: 4px;
+    }
+
+    /* Red Alert Danger Banner */
+    .alert-strip {
+      background: linear-gradient(135deg, #7f1d1d, #991b1b);
+      color: white;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 10px 20px rgba(185, 28, 28, 0.2);
+    }
+
+    .alert-strip h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .alert-flags-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .flag-card {
+      background: rgba(255, 255, 255, 0.12);
+      border-left: 4px solid #f87171;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 5 Steps of Care */
+    .care-pathway {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .path-step {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s;
+    }
+
+    .path-step:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .step-num {
+      width: 34px;
+      height: 34px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px auto;
+    }
+
+    .path-step h4 {
+      font-size: 1rem;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .path-step p {
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+
+    /* Vital Signs Monitor Dynamic Simulator */
+    .monitor-box {
+      background: #090d16;
+      border: 2px solid #1e293b;
+      border-radius: var(--radius);
+      padding: 24px;
+      color: #f8fafc;
+      box-shadow: var(--shadow-lg);
+      margin: 20px 0;
+    }
+
+    .monitor-title {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .patient-selector {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .btn-pat {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-pat:hover { background: #334155; }
+    .btn-pat.active {
+      background: #0284c7;
+      color: #fff;
+      border-color: #0284c7;
+    }
+
+    .monitor-screen {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .monitor-channel {
+      background: #0f172a;
+      border-radius: 6px;
+      padding: 12px;
+      text-align: center;
+      position: relative;
+    }
+
+    .ch-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .ch-value {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin: 2px 0;
+    }
+
+    .ch-unit {
+      font-size: 0.72rem;
+      color: #94a3b8;
+    }
+
+    .ch-status {
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-top: 4px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .status-ok { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+    .status-alert { background: rgba(239, 68, 68, 0.2); color: #f87171; animation: pulse 1s infinite alternate; }
+
+    @keyframes pulse {
+      from { opacity: 0.8; }
+      to { opacity: 1; transform: scale(1.05); }
+    }
+
+    .monitor-analysis {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      border-left: 4px solid #38bdf8;
+    }
+
+    .monitor-analysis h5 {
+      font-size: 0.95rem;
+      color: #38bdf8;
+      margin-bottom: 6px;
+    }
+
+    .monitor-analysis p {
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    /* Detective Case Cards */
+    .detective-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .detective-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .case-badge-pill {
+      background: #0f172a;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .btn-investigate {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-investigate:hover { background: var(--primary-dark); }
+
+    .detective-solution {
+      display: none;
+      background: #f8fafc;
+      border-top: 1px dashed var(--border);
+      padding: 14px;
+      margin-top: 12px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    /* Interactive Quiz */
+    .quiz-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .quiz-q {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 14px;
+    }
+
+    .quiz-choices {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-choice {
+      text-align: left;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-choice:hover { background: #f1f5f9; }
+
+    .btn-choice.correct {
+      background: #dcfce7 !important;
+      border-color: #22c55e !important;
+      color: #15803d !important;
+      font-weight: 700;
+    }
+
+    .btn-choice.wrong {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b !important;
+    }
+
+    .quiz-feedback-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .feedback-correct {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      color: #166534;
+      display: block;
+    }
+
+    .feedback-wrong {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      color: #991b1b;
+      display: block;
+    }
+
+    /* Checklist */
+    .check-box-wrap {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+
+    .bar-bg {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 10px 0 16px 0;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--success);
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .checklist-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .checklist-row input {
+      margin-top: 4px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .checklist-row label {
+      font-size: 0.88rem;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    /* Comparison Table */
+    .table-container {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    .trail-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      min-width: 500px;
+    }
+
+    .trail-table th, .trail-table td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .trail-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .trail-table tr:nth-child(even) { background: #f8fafc; }
+
+    /* Quotes and Tips */
+    .tip-card {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      padding: 14px 18px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #166534;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 640px) {
+      .hero-trail { padding: 24px 20px; }
+      .hero-trail h1 { font-size: 1.5rem; }
+      .station-box { padding: 20px 16px; }
+      .sim-display { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Quick Trail Navigation -->
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <div class="brand-title">
+        <span>🫁</span> Trilha Prática: Respiração & Sinais <span style="font-size:0.75rem; background:rgba(56,189,248,0.2); color:#7dd3fc; padding:2px 8px; border-radius:12px; font-weight:600; margin-left:6px;">Prof. Breno Gomes</span>
+      </div>
+      <nav class="trail-tags">
+        <a href="#dicionario" class="trail-tag-btn">📖 Termos</a>
+        <a href="#estacao-1" class="trail-tag-btn">1. O Enigma</a>
+        <a href="#estacao-2" class="trail-tag-btn">2. Fisiologia & Simulador</a>
+        <a href="#estacao-3" class="trail-tag-btn">3. Patologias</a>
+        <a href="#estacao-4" class="trail-tag-btn">4. Alertas Vermelhos (IRA)</a>
+        <a href="#estacao-5" class="trail-tag-btn">5. A Regra dos 5 Passos</a>
+        <a href="#estacao-6" class="trail-tag-btn">6. Monitor Clínico</a>
+        <a href="#estacao-7" class="trail-tag-btn">7. Detetive & Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Seção de Acolhimento e Introdução do Professor Breno Gomes -->
+    <section id="boas-vindas" class="intro-author-card">
+      <div class="author-profile">
+        <div class="author-avatar">👨‍⚕️</div>
+        <div>
+          <span class="badge-author">App Educacional Interativo</span>
+          <h2 class="author-name">Desenvolvido pelo Prof. Breno Gomes</h2>
+          <p class="author-role">Enfermagem Prática & Fisiopatologia Aplicada</p>
+        </div>
+      </div>
+      <div class="intro-message">
+        <p>
+          <strong>Olá, futuro(a) profissional de enfermagem!</strong>
+        </p>
+        <p>
+          Criei este aplicativo pensando exatamente no seu dia a dia e nos desafios de quem está entrando no universo da saúde. Esqueça termos difíceis jogados sem explicação ou decorebas sem sentido: nosso foco aqui é <strong>aprender rápido, ver o corpo reagindo de verdade e saber agir com segurança no leito do paciente</strong>.
+        </p>
+        <div class="intro-highlights">
+          <div class="intro-highlight-item">
+            <span>✨</span> <strong>Linguagem Direta:</strong> Começamos com o que você já conhece no cotidiano e traduzimos para a rotina técnica.
+          </div>
+          <div class="intro-highlight-item">
+            <span>🫁</span> <strong>Simulações Vivas:</strong> Observe o pulmão respirando de verdade e a troca gasosa acontecendo nos alvéolos.
+          </div>
+          <div class="intro-highlight-item">
+            <span>🚨</span> <strong>Raciocínio Clínico:</strong> Entenda o que o monitor está gritando antes que o paciente descompense.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Header -->
+    <section class="hero-trail">
+      <span class="hero-badge">App Interativo • Criado pelo Prof. Breno Gomes</span>
+      <h1>Processo Saúde-Doença:<br>Doenças Respiratórias e Sinais Vitais</h1>
+      <p>
+        Aprenda de forma direta, visual e sem complicação. Entenda o que acontece dentro do pulmão, como interpretar os sinais vitais e o que fazer para salvar o paciente no plantão.
+      </p>
+      <div class="quick-formula">
+        <strong>⚡ O Passo a Passo do Técnico:</strong>
+        <span>1. O que é a doença ➔</span>
+        <span>2. O que acontece lá dentro ➔</span>
+        <span>3. O que o paciente sente ➔</span>
+        <span>4. O que o monitor mostra ➔</span>
+        <span>5. Qual o cuidado imediato!</span>
+      </div>
+    </section>
+
+    <!-- Dicionário do Técnico -->
+    <section id="dicionario" class="station-box">
+      <div class="station-header">
+        <div class="station-icon">📖</div>
+        <div class="station-title">
+          <h2>Dicionário de Bolso: O "Tradutor" da Enfermagem</h2>
+          <p>Conecte as queixas comuns aos termos técnicos usados na equipe de saúde</p>
+        </div>
+      </div>
+
+      <div class="translator-widget">
+        <div class="translator-title">
+          <span>💡 Como a gente fala no dia a dia ➔ Como a gente anota no prontuário:</span>
+        </div>
+        <div class="terms-grid">
+          <div class="term-pill">
+            <span class="simple">Falta de ar / Cansaço</span>
+            <span class="technical">Dispneia</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Respiração rápida / acelerada</span>
+            <span class="technical">Taquipneia (> 20 irpm)</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Respiração muito lenta / fraca</span>
+            <span class="technical">Bradipneia (< 12 irpm)</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Parada de respirar</span>
+            <span class="technical">Apneia</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Coração acelerado / disparo</span>
+            <span class="technical">Taquicardia (> 100 bpm)</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Coração muito lento</span>
+            <span class="technical">Bradicardia (< 60 bpm)</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Pouco oxigênio no sangue</span>
+            <span class="technical">Hipoxemia (SpO₂ < 90%)</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Lábios e dedos roxos</span>
+            <span class="technical">Cianose</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Chiado de "gatinho" no peito</span>
+            <span class="technical">Sibilos</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Custo para puxar ar (costelas afundando)</span>
+            <span class="technical">Tiragem Intercostal</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Tosse com sangue</span>
+            <span class="technical">Hemoptise</span>
+          </div>
+          <div class="term-pill">
+            <span class="simple">Aperto dos brônquios</span>
+            <span class="technical">Broncoconstrição</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTAÇÃO 1: O ENIGMA INICIAL -->
+    <section id="estacao-1" class="station-box">
+      <div class="station-header">
+        <div class="station-icon">❓</div>
+        <div class="station-title">
+          <h2>Estação 1: O Enigma da Recepção</h2>
+          <p>O que os números dos aparelhos tentam nos contar?</p>
+        </div>
+      </div>
+
+      <div style="background: #0f172a; color: white; padding: 22px; border-radius: 10px; margin-bottom: 20px;">
+        <span style="background: #f59e0b; color: #000; font-size: 0.75rem; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">Situação Real</span>
+        <p style="font-size: 1.1rem; margin: 12px 0; color: #f8fafc;">
+          "Seu Manoel, 68 anos, chega ao posto de saúde quase sem fôlego, apoiado na parede, suando frio e tossindo. Você coloca o oxímetro e mede os sinais:"
+        </p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px;">
+          <div style="background: #1e293b; border-left: 4px solid #ef4444; padding: 10px 16px; border-radius: 6px; flex: 1; min-width: 120px;">
+            <div style="font-size: 0.7rem; color: #94a3b8;">RESPIRAÇÃO (FR)</div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: #f87171;">30 irpm</div>
+            <small style="color: #cbd5e1; font-size: 0.72rem;">Normal: 12 a 20</small>
+          </div>
+          <div style="background: #1e293b; border-left: 4px solid #ef4444; padding: 10px 16px; border-radius: 6px; flex: 1; min-width: 120px;">
+            <div style="font-size: 0.7rem; color: #94a3b8;">CORAÇÃO (FC)</div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: #f87171;">112 bpm</div>
+            <small style="color: #cbd5e1; font-size: 0.72rem;">Normal: 60 a 100</small>
+          </div>
+          <div style="background: #1e293b; border-left: 4px solid #f59e0b; padding: 10px 16px; border-radius: 6px; flex: 1; min-width: 120px;">
+            <div style="font-size: 0.7rem; color: #94a3b8;">PRESSÃO (PA)</div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: #fbbf24;">150 × 90</div>
+            <small style="color: #cbd5e1; font-size: 0.72rem;">mmHg (Elevada)</small>
+          </div>
+          <div style="background: #1e293b; border-left: 4px solid #ef4444; padding: 10px 16px; border-radius: 6px; flex: 1; min-width: 120px;">
+            <div style="font-size: 0.7rem; color: #94a3b8;">OXIGÊNIO (SpO₂)</div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: #f87171;">88%</div>
+            <small style="color: #cbd5e1; font-size: 0.72rem;">Normal: ≥ 95%</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explicação Dinâmica -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+        <div style="background: #f8fafc; border: 1px solid var(--border); padding: 16px; border-radius: 8px;">
+          <h4 style="color: var(--primary-dark); font-size: 0.95rem; margin-bottom: 6px;">1. Por que a respiração acelerou para 30?</h4>
+          <p style="font-size: 0.88rem; color: #334155;">
+            O sangue está com pouco oxigênio (88%). O cérebro percebe e manda o comando de socorro: <em>"Respire mais vezes por minuto para tentar puxar mais ar e jogar gás carbônico fora!"</em>. Isso é <strong>taquipneia compensatória</strong>.
+          </p>
+        </div>
+        <div style="background: #f8fafc; border: 1px solid var(--border); padding: 16px; border-radius: 8px;">
+          <h4 style="color: var(--primary-dark); font-size: 0.95rem; margin-bottom: 6px;">2. Por que o coração disparou para 112?</h4>
+          <p style="font-size: 0.88rem; color: #334155;">
+            Como o sangue está "fraco" de oxigênio, o coração precisa bater muito mais rápido para fazer esse pouco oxigênio circular velozmente e não deixar faltar sangue no cérebro e órgãos nobres.
+          </p>
+        </div>
+      </div>
+
+      <div class="tip-card" style="margin-top: 18px;">
+        🚨 <strong>O que o técnico faz nessa hora?</strong> Não perde tempo anotando devagarzinho no prontuário! Coloca o paciente sentado ereto (cabeceira alta), alivia a roupa, não o deixa sozinho e <strong>chama a equipe/enfermeiro imediatamente</strong>.
+      </div>
+    </section>
+
+    <!-- ESTAÇÃO 2: FISIOLOGIA VIVA & SIMULADOR DE MOVIMENTO -->
+    <section id="estacao-2" class="station-box">
+      <div class="station-header">
+        <div class="station-icon">🌬️</div>
+        <div class="station-title">
+          <h2>Estação 2: Fisiologia Viva & Simulador de Pulmão</h2>
+          <p>Veja o tórax expandindo e o oxigênio entrando no sangue em tempo real</p>
+        </div>
+      </div>
+
+      <!-- Rota do Ar -->
+      <h3 style="font-size: 1.05rem; margin-bottom: 12px; color: #0f172a;">A Rodovia do Ar: Do Nariz até os Alvéolos</h3>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; background: #f1f5f9; padding: 14px; border-radius: 8px; margin-bottom: 24px; font-size: 0.85rem; font-weight: 700;">
+        <span>Nariz ➔</span>
+        <span>Faringe ➔</span>
+        <span>Laringe ➔</span>
+        <span>Traqueia ➔</span>
+        <span>Brônquios ➔</span>
+        <span>Bronquíolos ➔</span>
+        <span style="color: var(--primary); text-decoration: underline;">Alvéolos (onde a mágica acontece!)</span>
+      </div>
+
+      <!-- SIMULADOR DINÂMICO DE RITMO RESPIRATÓRIO COM ANIMAÇÃO CSS -->
+      <div class="simulator-box">
+        <div class="sim-header">
+          <div>
+            <h3 style="font-size: 1.15rem; color: #38bdf8;">🫁 Simulador de Respiração e Movimento Torácico</h3>
+            <p style="font-size: 0.82rem; color: #94a3b8;">Clique nos botões abaixo para ver como o tórax e o pulmão se movimentam em cada padrão:</p>
+          </div>
+          <div class="sim-controls">
+            <button class="btn-sim active" onclick="setBreathingPattern('normal', this)">1. Normal (Eupneia)</button>
+            <button class="btn-sim" onclick="setBreathingPattern('fast', this)">2. Rápida (Taquipneia)</button>
+            <button class="btn-sim" onclick="setBreathingPattern('slow', this)">3. Perigosa (Bradipneia)</button>
+            <button class="btn-sim" onclick="setBreathingPattern('effort', this)">4. Com Esforço (Tiragem)</button>
+          </div>
+        </div>
+
+        <div class="sim-display">
+          <!-- Animated Chest Graphic -->
+          <div class="chest-container">
+            <svg id="lung-svg" class="animated-lungs breathe-normal" viewBox="0 0 100 100" fill="none">
+              <!-- Traqueia -->
+              <path d="M 46 15 L 46 38 Q 46 44 40 48 L 30 58 M 54 15 L 54 38 Q 54 44 60 48 L 70 58" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+              <!-- Pulmão Esquerdo -->
+              <path d="M 28 48 C 14 55 12 78 22 92 C 32 98 42 90 42 75 C 42 58 35 48 28 48 Z" fill="#0284c7" opacity="0.85"/>
+              <!-- Pulmão Direito -->
+              <path d="M 72 48 C 86 55 88 78 78 92 C 68 98 58 90 58 75 C 58 58 65 48 72 48 Z" fill="#0284c7" opacity="0.85"/>
+              <!-- Núcleo de ar -->
+              <circle cx="30" cy="72" r="6" fill="#bae6fd"/>
+              <circle cx="70" cy="72" r="6" fill="#bae6fd"/>
+            </svg>
+          </div>
+
+          <!-- Dynamic Readout -->
+          <div class="sim-stats">
+            <h4 id="sim-title" style="color: #38bdf8;">🟢 Respiração Normal (Eupneia)</h4>
+            <div class="rate-counter" id="sim-rate">16 <span style="font-size: 1rem; color: #94a3b8; font-weight: 500;">irpm (incursões por min)</span></div>
+            <p id="sim-desc">
+              Movimento suave, rítmico e sem barulho. O tórax sobe e desce sem exigir força dos músculos do pescoço ou barriga. O paciente conversa normalmente sem cansar.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparador Alvéolo Saudável vs Doente -->
+      <h3 style="font-size: 1.05rem; margin: 24px 0 12px 0; color: #0f172a;">🔬 O que acontece na pontinha do pulmão (Alvéolos)?</h3>
+      <p style="font-size: 0.9rem; color: #475569; margin-bottom: 12px;">
+        Os alvéolos são como <strong>milhões de microbexigas de ar</strong> envolvidas por vasinhos de sangue. Veja o que acontece quando eles adoecem:
+      </p>
+
+      <div class="alveoli-tabs">
+        <button class="btn-alv active" onclick="showAlveoli('normal', this)">Alvéolo Saudável</button>
+        <button class="btn-alv" onclick="showAlveoli('pneumonia', this)">Alvéolo com Pneumonia (Secreção)</button>
+        <button class="btn-alv" onclick="showAlveoli('asma', this)">Bronquíolo com Asma (Apertado)</button>
+      </div>
+
+      <div class="alv-card-display">
+        <!-- Normal -->
+        <div id="alv-view-normal" class="alv-grid">
+          <div class="alv-visual">
+            <svg width="200" height="150" viewBox="0 0 200 150">
+              <circle cx="100" cy="75" r="55" fill="#f0fdf4" stroke="#16a34a" stroke-width="3"/>
+              <text x="100" y="70" text-anchor="middle" fill="#15803d" font-weight="700" font-size="12">Cheio de Ar Puro</text>
+              <text x="100" y="90" text-anchor="middle" fill="#0284c7" font-weight="600" font-size="11">O₂ livre para passar</text>
+              <path d="M 20 135 Q 100 125 180 135" stroke="#ef4444" stroke-width="8" stroke-linecap="round"/>
+              <text x="100" y="145" text-anchor="middle" fill="#991b1b" font-weight="700" font-size="10">Sangue Capilar ➔ Oxigenação 100%</text>
+            </svg>
+          </div>
+          <div class="alv-text">
+            <h4>🟢 Como funciona quando está tudo bem:</h4>
+            <p>A parede da bexiguinha (alvéolo) é extremamente fina. O oxigênio entra pelo ar e pula direto para dentro dos glóbulos vermelhos do sangue num piscar de olhos.</p>
+            <span class="highlight-pill" style="background: var(--success-light); color: var(--success);">SpO₂ esperada: 95% a 100%</span>
+          </div>
+        </div>
+
+        <!-- Pneumonia -->
+        <div id="alv-view-pneumonia" class="alv-grid" style="display: none;">
+          <div class="alv-visual">
+            <svg width="200" height="150" viewBox="0 0 200 150">
+              <circle cx="100" cy="75" r="55" fill="#fef2f2" stroke="#dc2626" stroke-width="3"/>
+              <!-- pus no fundo -->
+              <path d="M 50 85 Q 100 75 150 85 A 55 55 0 0 1 50 85" fill="#fca5a5"/>
+              <text x="100" y="55" text-anchor="middle" fill="#b91c1c" font-weight="700" font-size="11">Pouco espaço de ar</text>
+              <text x="100" y="105" text-anchor="middle" fill="#7f1d1d" font-weight="800" font-size="11">Pus / Inflamação</text>
+              <path d="M 20 135 Q 100 125 180 135" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
+              <text x="100" y="145" text-anchor="middle" fill="#475569" font-weight="700" font-size="10">Sangue passa sem pegar O₂</text>
+            </svg>
+          </div>
+          <div class="alv-text">
+            <h4 style="color: var(--danger-dark);">🔴 Na Pneumonia: O alvéolo "afogado" em secreção</h4>
+            <p>Bactérias atacam o alvéolo e o corpo reage enchendo-o de pus e catarro. Como o oxigênio não consegue atravessar essa poça de secreção líquida, o sangue continua sem oxigênio!</p>
+            <span class="highlight-pill" style="background: var(--danger-light); color: var(--danger-dark);">Resultado: SpO₂ despenca e paciente fica ofegante</span>
+          </div>
+        </div>
+
+        <!-- Asma -->
+        <div id="alv-view-asma" class="alv-grid" style="display: none;">
+          <div class="alv-visual">
+            <svg width="200" height="150" viewBox="0 0 200 150">
+              <!-- canal estreito -->
+              <circle cx="100" cy="75" r="50" fill="#f1f5f9" stroke="#f59e0b" stroke-width="12"/>
+              <circle cx="100" cy="75" r="20" fill="#fee2e2" stroke="#b91c1c" stroke-width="4"/>
+              <text x="100" y="79" text-anchor="middle" fill="#b91c1c" font-weight="800" font-size="11">APERTO!</text>
+              <text x="100" y="142" text-anchor="middle" fill="#d97706" font-weight="700" font-size="10">Parede inchada + Músculo contraído</text>
+            </svg>
+          </div>
+          <div class="alv-text">
+            <h4 style="color: #b45309;">🟠 Na Asma: O canudinho amassado (Broncoconstrição)</h4>
+            <p>O tubinho que leva o ar até os alvéolos fica irritado, incha e a musculatura em volta dele se aperta (como se pisassem numa mangueira de água). O ar tenta sair e assobia: é o famoso <strong>sibilo</strong>.</p>
+            <span class="highlight-pill" style="background: var(--warning-light); color: #92400e;">Resultado: Peito preso, cansaço e sufocamento</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTAÇÃO 3: AS PRINCIPAIS PATOLOGIAS EXPLICADAS -->
+    <section id="estacao-3" class="station-box">
+      <div class="station-header">
+        <div class="station-icon">🩺</div>
+        <div class="station-title">
+          <h2>Estação 3: Doenças Pulmonares sem Rodeios</h2>
+          <p>O que você realmente precisa saber à beira do leito do paciente</p>
+        </div>
+      </div>
+
+      <!-- Abas das doenças -->
+      <nav class="patho-nav">
+        <button class="btn-patho active" onclick="switchDisease('pneumonia', this)">🫁 1. Pneumonia</button>
+        <button class="btn-patho" onclick="switchDisease('asma', this)">🌪️ 2. Asma</button>
+        <button class="btn-patho" onclick="switchDisease('dpoc', this)">🚬 3. DPOC</button>
+        <button class="btn-patho" onclick="switchDisease('tb', this)">🔬 4. Tuberculose</button>
+        <button class="btn-patho" onclick="switchDisease('tep', this)">⚠️ 5. Embolia (TEP)</button>
+        <button class="btn-patho" onclick="switchDisease('outras', this)">📋 6. Outras Condições</button>
+      </nav>
+
+      <!-- 1. Pneumonia -->
+      <div id="dis-pneumonia" class="patho-body active">
+        <div class="disease-summary">
+          <div class="disease-headline">
+            <h3>Pneumonia: Infecção dos Alvéolos</h3>
+            <span style="background: #e0f2fe; color: #0284c7; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700;">Infecciosa</span>
+          </div>
+          <div class="analogy-banner">
+            💡 <strong>Pense assim:</strong> É como se as bexiguinhas onde o ar entra ficassem cheias de catarro e pus. O oxigênio bate nessa "parede de sujeira" e não consegue chegar no sangue.
+          </div>
+          <div class="four-cards-grid">
+            <div class="step-box step-1">
+              <h5>1. O que é & O que causa</h5>
+              <p>Infecção nos alvéolos pulmonares, provocada por bactérias, vírus ou fungos.</p>
+            </div>
+            <div class="step-box step-2">
+              <h5>2. O que o paciente sente</h5>
+              <ul>
+                <li>Febre alta e calafrios;</li>
+                <li>Tosse com catarro amarelado/esverdeado;</li>
+                <li>Dor no peito ao respirar fundo;</li>
+                <li>Falta de ar e cansaço fácil.</li>
+              </ul>
+            </div>
+            <div class="step-box step-3">
+              <h5>3. O que o monitor mostra</h5>
+              <ul>
+                <li><strong>FR alta (Taquipneia):</strong> > 24 irpm;</li>
+                <li><strong>FC alta (Taquicardia):</strong> > 100 bpm;</li>
+                <li><strong>SpO₂ em queda:</strong> &lt; 92-90%;</li>
+                <li><strong>Temperatura:</strong> > 38 °C (em idosos pode não haver febre!).</li>
+              </ul>
+            </div>
+            <div class="step-box step-4">
+              <h5>4. O que o Técnico Faz</h5>
+              <ul>
+                <li>Elevar a cabeceira da cama (30° a 45°);</li>
+                <li>Incentivar água (amolece o catarro);</li>
+                <li>Dar o antibiótico no horário certo;</li>
+                <li>Descrever o aspecto do escarro;</li>
+                <li>Avisar a equipe se a SpO₂ cair.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Asma -->
+      <div id="dis-asma" class="patho-body">
+        <div class="disease-summary">
+          <div class="disease-headline">
+            <h3>Asma Brônquica: O Ataque de Aperto</h3>
+            <span style="background: #fef3c7; color: #b45309; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700;">Inflamatória / Reversível</span>
+          </div>
+          <div class="analogy-banner">
+            💡 <strong>Pense assim:</strong> Imagine tentar respirar por um canudo fino de refrigerante amassado. Os tubos se fecham e o ar entra com dificuldade e custa a sair.
+          </div>
+          <div class="four-cards-grid">
+            <div class="step-box step-1">
+              <h5>1. O que é & Tríade</h5>
+              <p>Inflamação crônica que causa <strong>broncoconstrição</strong> (músculo aperta), inchaço na parede e muco grudento nos brônquios.</p>
+            </div>
+            <div class="step-box step-2">
+              <h5>2. Sintomas na Crise</h5>
+              <ul>
+                <li>Falta de ar súbita;</li>
+                <li>Chiado no peito (assobio);</li>
+                <li>Sensação de peito trancado/amarrado;</li>
+                <li>Tosse seca espasmódica.</li>
+              </ul>
+            </div>
+            <div class="step-box step-3">
+              <h5>3. Sinais de Gravidade</h5>
+              <ul>
+                <li>Paciente não consegue falar frases completas;</li>
+                <li>Músculos do pescoço repuxando;</li>
+                <li><strong>Alerta Máximo:</strong> Peito silencioso (o ar parou de passar tão fechado que nem pia mais!).</li>
+              </ul>
+            </div>
+            <div class="step-box step-4">
+              <h5>4. Cuidado de Enfermagem</h5>
+              <ul>
+                <li>Sentar o paciente imediatamente;</li>
+                <li>Ajudar na inalação/bombinha prescrita;</li>
+                <li>Manter a calma (o paciente se apavora);</li>
+                <li><strong>NUNCA dizer que é só "nervosismo" ou "crise de pânico"!</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. DPOC -->
+      <div id="dis-dpoc" class="patho-body">
+        <div class="disease-summary">
+          <div class="disease-headline">
+            <h3>DPOC: Doença Pulmonar Obstrutiva Crônica</h3>
+            <span style="background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700;">Crônica / Tabagismo</span>
+          </div>
+          <div class="analogy-banner">
+            💡 <strong>Pense assim:</strong> É a junção do <em>Enfisema</em> (o pulmão vira uma bexiga velha que esticou e não esvazia mais) com a <em>Bronquite Crônica</em> (cano inflamado e cheio de catarro diário).
+          </div>
+          <div class="four-cards-grid">
+            <div class="step-box step-1">
+              <h5>1. Causa Principal</h5>
+              <p>Histórico prolongado de cigarro ou fumaça de fogão a lenha por muitos anos.</p>
+            </div>
+            <div class="step-box step-2">
+              <h5>2. O Paciente Típico</h5>
+              <ul>
+                <li>Tosse crônica com catarro todas as manhãs;</li>
+                <li>Cansaço até para escovar dentes ou andar;</li>
+                <li>Tórax largo ("em barril/tonel");</li>
+                <li>Respira fazendo biquinho com os lábios.</li>
+              </ul>
+            </div>
+            <div class="step-box step-3">
+              <h5>3. Segredo da Saturação (SpO₂)</h5>
+              <p>Muitos pacientes com DPOC avançada já vivem normalmente com <strong>SpO₂ entre 88% e 92%</strong>. Não se apavore só com o número: veja se ele está consciente e conversando!</p>
+            </div>
+            <div class="step-box step-4">
+              <h5>4. Cuidados do Técnico</h5>
+              <ul>
+                <li>Oxigênio deve ser controlado (excesso de oxigênio em DPOC pode fazê-lo parar de respirar);</li>
+                <li>Observar sonolência exagerada (sinal de que está retendo CO₂);</li>
+                <li>Posição sentada com braços apoiados.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Tuberculose -->
+      <div id="dis-tb" class="patho-body">
+        <div class="disease-summary">
+          <div class="disease-headline">
+            <h3>Tuberculose: A Bactéria das Cavernas</h3>
+            <span style="background: #f3e8ff; color: #7e22ce; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700;">Transmissível por Aerossóis</span>
+          </div>
+          <div class="analogy-banner">
+            💡 <strong>Pense assim:</strong> Uma bactéria que viaja em gotinhas invisíveis no ar e vai "cavando buracos" no pulmão, destruindo tecido e causando sangramento.
+          </div>
+          <div class="four-cards-grid">
+            <div class="step-box step-1">
+              <h5>1. O Agente</h5>
+              <p>Causada pelo <em>Bacilo de Koch</em>. Transmitida quando o doente tosse, fala ou espirra sem máscara.</p>
+            </div>
+            <div class="step-box step-2">
+              <h5>2. Os 4 Sinais Clássicos</h5>
+              <ul>
+                <li><strong>Tosse há mais de 3 semanas;</strong></li>
+                <li>Febre no fim da tarde;</li>
+                <li>Suor noturno (acorda com o pijama molhado);</li>
+                <li>Emagrecimento rápido sem motivo.</li>
+              </ul>
+            </div>
+            <div class="step-box step-3">
+              <h5>3. Biossegurança Obrigatória</h5>
+              <ul>
+                <li>O técnico usa <strong>Máscara PFF2 (N95)</strong>;</li>
+                <li>O paciente usa <strong>Máscara Cirúrgica</strong>;</li>
+                <li>Quarto ventilado / janela aberta;</li>
+                <li>Cobrir a boca ao tossir com papel descartável.</li>
+              </ul>
+            </div>
+            <div class="step-box step-4">
+              <h5>4. Apoio ao Tratamento</h5>
+              <p>O tratamento dura no mínimo 6 meses com vários comprimidos. O técnico deve encorajar o paciente a <strong>nunca abandonar os remédios</strong>, pois a bactéria fica resistente e perigosa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. TEP -->
+      <div id="dis-tep" class="patho-body">
+        <div class="disease-summary" style="border: 2px solid var(--danger);">
+          <div class="disease-headline">
+            <h3 style="color: var(--danger-dark);">Tromboembolismo Pulmonar (TEP / Embolia)</h3>
+            <span style="background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 800;">EMERGÊNCIA MÉDICA</span>
+          </div>
+          <div class="analogy-banner" style="background: #fef2f2; border-left-color: var(--danger); color: #7f1d1d;">
+            🚨 <strong>Pense assim:</strong> Um coágulo (pedacinho de sangue duro) se soltou da perna, viajou pelas veias e "tampou" a artéria do pulmão feito uma rolha. O sangue para de chegar para pegar oxigênio de repente!
+          </div>
+          <div class="four-cards-grid">
+            <div class="step-box step-1">
+              <h5>1. De onde vem?</h5>
+              <p>Geralmente de trombose na perna (perna inchada, quente e dolorida após cirurgias ou ficar dias deitado).</p>
+            </div>
+            <div class="step-box step-2">
+              <h5>2. Como o paciente fica?</h5>
+              <ul>
+                <li><strong>Falta de ar de repente (do nada!);</strong></li>
+                <li>Dor forte e pontiaguda no peito;</li>
+                <li>Taquicardia violenta (> 120 bpm);</li>
+                <li>Palidez, suor frio e desespero.</li>
+              </ul>
+            </div>
+            <div class="step-box step-3">
+              <h5>3. O que NÃO fazer</h5>
+              <p style="color: var(--danger-dark); font-weight: 700;">NÃO deixe o paciente levantar da cama para andar ou ir ao banheiro! Ele pode desmaiar ou ter parada cardíaca.</p>
+            </div>
+            <div class="step-box step-4">
+              <h5>4. Ação Imediata</h5>
+              <ul>
+                <li>Repouso absoluto na cama;</li>
+                <li>Chamar o médico e enfermeiro NA HORA;</li>
+                <li>Colocar oxigênio suplementar;</li>
+                <li>Pegar acesso venoso calibroso para medicamentos.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Outras Condições -->
+      <div id="dis-outras" class="patho-body">
+        <div class="table-container">
+          <table class="trail-table">
+            <thead>
+              <tr>
+                <th>Problema</th>
+                <th>O que acontece de verdade?</th>
+                <th>O que o Técnico observa?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Resfriado Comum</strong></td>
+                <td>Vírus brando nas vias superiores (nariz/garganta).</td>
+                <td>Coriza, espirros, garganta arranhando. Sem falta de ar grave.</td>
+              </tr>
+              <tr>
+                <td><strong>Gripe (Influenza)</strong></td>
+                <td>Vírus mais forte. Derruba o corpo todo.</td>
+                <td>Febre súbita alta, dor forte no corpo e cabeça, cansaço pesado.</td>
+              </tr>
+              <tr>
+                <td><strong>Pneumotórax</strong></td>
+                <td>"Furo" no pulmão: o ar vaza para fora dele e amassa o pulmão.</td>
+                <td>Dor em facada de repente, um lado do peito não mexe igual ao outro. Emergência!</td>
+              </tr>
+              <tr>
+                <td><strong>Derrame Pleural</strong></td>
+                <td>Água/líquido acumulado em volta do pulmão, espremendo-o.</td>
+                <td>Falta de ar que piora ao deitar. Respiração curta.</td>
+              </tr>
+              <tr>
+                <td><strong>Edema Agudo (EAP)</strong></td>
+                <td>O coração fraco não bombeia e a água do sangue vaza para os alvéolos.</td>
+                <td>Sensação de afogamento, suor frio, tosse com espuma cor-de-rosa. Posição sentada obrigatória!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTAÇÃO 4: INSUFICIÊNCIA RESPIRATÓRIA & ALERTA VERMELHO -->
+    <section id="estacao-4" class="station-box">
+      <div class="station-header">
+        <div class="station-icon" style="background: #fee2e2; color: #dc2626;">🚨</div>
+        <div class="station-title">
+          <h2>Estação 4: Insuficiência Respiratória Aguda (IRA)</h2>
+          <p>Quando o pulmão pede socorro: aprenda a bater o olho e agir rápido</p>
+        </div>
+      </div>
+
+      <p style="font-size: 0.95rem; color: #334155; margin-bottom: 16px;">
+        A <strong>Insuficiência Respiratória</strong> não é uma doença em si, mas o <strong>resultado final</strong> de qualquer problema grave: o pulmão simplesmente não consegue mais colocar oxigênio no sangue ou não consegue jogar o gás carbônico fora.
+      </p>
+
+      <!-- Painel de Alerta Vermelho -->
+      <div class="alert-strip">
+        <h3>🚨 OS 8 SINAIS DE ALERTA VERMELHO (RISCO DE VIDA!)</h3>
+        <p style="font-size: 0.9rem; color: #fecaca;">
+          Se você ver um paciente com qualquer um desses sinais, <strong>não espere</strong>: comunique a equipe na hora!
+        </p>
+        <div class="alert-flags-grid">
+          <div class="flag-card">
+            <span>⚠️</span> <strong>Frequência Respiratória > 30 ou &lt; 10 irpm</strong>
+          </div>
+          <div class="flag-card">
+            <span>⚠️</span> <strong>SpO₂ abaixo de 90% mesmo com oxigênio</strong>
+          </div>
+          <div class="flag-card">
+            <span>⚠️</span> <strong>Tiragem: buraco do pescoço ou costelas afundando</strong>
+          </div>
+          <div class="flag-card">
+            <span>⚠️</span> <strong>Asas do nariz abrindo e fechando rápido</strong>
+          </div>
+          <div class="flag-card">
+            <span>⚠️</span> <strong>Lábios e unhas ficando roxos (Cianose)</strong>
+          </div>
+          <div class="flag-card">
+            <span>⚠️</span> <strong>Não consegue completar uma frase sem puxar ar</strong>
+          </div>
+          <div class="flag-card">
+            <span>⚠️</span> <strong>Ficou confuso, agitado ou muito sonolento</strong>
+          </div>
+          <div class="flag-card">
+            <span>⚠️</span> <strong>Barriga sobe enquanto o peito desce (Paradoxal)</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card" style="background: #fef2f2; border-left-color: #ef4444; color: #991b1b; font-weight: 700;">
+        📢 REGRA DE OURO DO TÉCNICO: "Falta de ar aumentando + paciente ficando sonolento ou confuso = O cérebro está sem oxigênio. Chame ajuda imediatamente!"
+      </div>
+    </section>
+
+    <!-- ESTAÇÃO 5: O MÉTODO DOS 5 PASSOS DO CUIDADO -->
+    <section id="estacao-5" class="station-box">
+      <div class="station-header">
+        <div class="station-icon">👩‍⚕️</div>
+        <div class="station-title">
+          <h2>Estação 5: O Método dos 5 Passos da Enfermagem</h2>
+          <p>O que fazer na prática quando você assume um paciente respiratório</p>
+        </div>
+      </div>
+
+      <div class="care-pathway">
+        <div class="path-step">
+          <div class="step-num">1</div>
+          <h4>OBSERVAR</h4>
+          <p>Olhe para o paciente: ele está lúcido? Está roxo? As costelas afundam? Tem catarro saindo?</p>
+        </div>
+        <div class="path-step">
+          <div class="step-num">2</div>
+          <h4>MEDIR</h4>
+          <p>Conte a respiração por 60s, meça SpO₂, pulso, pressão arterial e temperatura.</p>
+        </div>
+        <div class="path-step">
+          <div class="step-num">3</div>
+          <h4>POSICIONAR</h4>
+          <p>Nunca deixe com falta de ar deitado reto! Eleve a cabeceira a 45° ou 90° (Posição de Fowler).</p>
+        </div>
+        <div class="path-step">
+          <div class="step-num">4</div>
+          <h4>EXECUTAR</h4>
+          <p>Dê os remédios na hora, instale a inalação ou oxigênio conforme prescrição médica.</p>
+        </div>
+        <div class="path-step" style="border: 2px solid var(--danger);">
+          <div class="step-num" style="background: var(--danger);">5</div>
+          <h4 style="color: var(--danger-dark);">COMUNICAR</h4>
+          <p>Anote tudo direitinho e avise o enfermeiro na hora se o paciente piorar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTAÇÃO 6: MONITOR CLÍNICO DINÂMICO -->
+    <section id="estacao-6" class="station-box">
+      <div class="station-header">
+        <div class="station-icon">📊</div>
+        <div class="station-title">
+          <h2>Estação 6: Simulador do Monitor de Sinais Vitais</h2>
+          <p>Selecione um paciente para ver a tela do monitor e entender a história que ele conta</p>
+        </div>
+      </div>
+
+      <div class="monitor-box">
+        <div class="monitor-title">
+          <span>🖥️ Monitor Multiparamétrico de Triagem</span>
+          <span style="color: #4ade80;">● SINAL ATIVO</span>
+        </div>
+
+        <div class="patient-selector">
+          <button class="btn-pat active" onclick="loadPatient(1, this)">Paciente 1: Seu Carlos (Estável)</button>
+          <button class="btn-pat" onclick="loadPatient(2, this)">Paciente 2: Dona Antônia (Pneumonia)</button>
+          <button class="btn-pat" onclick="loadPatient(3, this)">Paciente 3: Jovem Pedro (Crise de Asma)</button>
+          <button class="btn-pat" onclick="loadPatient(4, this)">Paciente 4: Seu Ivo (Exaustão Crítica)</button>
+        </div>
+
+        <div class="monitor-screen">
+          <div class="monitor-channel">
+            <div class="ch-label">Respiração (FR)</div>
+            <div class="ch-value" id="mon-fr" style="color: #38bdf8;">16</div>
+            <div class="ch-unit">irpm</div>
+            <div class="ch-status status-ok" id="mon-fr-st">Normal</div>
+          </div>
+          <div class="monitor-channel">
+            <div class="ch-label">Oxímetro (SpO₂)</div>
+            <div class="ch-value" id="mon-spo2" style="color: #4ade80;">98%</div>
+            <div class="ch-unit">Hemoglobina O₂</div>
+            <div class="ch-status status-ok" id="mon-spo2-st">Excelente</div>
+          </div>
+          <div class="monitor-channel">
+            <div class="ch-label">Frequência Cardíaca</div>
+            <div class="ch-value" id="mon-fc" style="color: #34d399;">76</div>
+            <div class="ch-unit">batimentos/min</div>
+            <div class="ch-status status-ok" id="mon-fc-st">Normal</div>
+          </div>
+          <div class="monitor-channel">
+            <div class="ch-label">Pressão Arterial</div>
+            <div class="ch-value" id="mon-pa" style="color: #cbd5e1;">120×80</div>
+            <div class="ch-unit">mmHg</div>
+            <div class="ch-status status-ok" id="mon-pa-st">Normotenso</div>
+          </div>
+          <div class="monitor-channel">
+            <div class="ch-label">Temperatura</div>
+            <div class="ch-value" id="mon-temp" style="color: #fbbf24;">36,5</div>
+            <div class="ch-unit">°C</div>
+            <div class="ch-status status-ok" id="mon-temp-st">Afebril</div>
+          </div>
+        </div>
+
+        <div class="monitor-analysis" id="mon-analysis">
+          <h5 id="mon-analysis-title">Análise Clínica: Paciente Estável</h5>
+          <p id="mon-analysis-desc">
+            Todos os parâmetros estão em harmonia. O pulmão está oxigenando perfeitamente o sangue (98%), por isso o coração não precisa se desgastar batendo acelerado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTAÇÃO 7: DETETIVE CLÍNICO, TESTES E CHECKLIST -->
+    <section id="estacao-7" class="station-box">
+      <div class="station-header">
+        <div class="station-icon">🕵️</div>
+        <div class="station-title">
+          <h2>Estação 7: Desafio do Detetive & Teste Rápido</h2>
+          <p>Pratique a tomada de decisão rápida e veja o gabarito explicado</p>
+        </div>
+      </div>
+
+      <h3 style="font-size: 1.05rem; margin-bottom: 14px; color: #0f172a;">Cartões de Plantão: Qual a sua conduta?</h3>
+
+      <!-- Caso 1 -->
+      <div class="detective-card">
+        <div class="detective-top">
+          <div>
+            <span class="case-badge-pill">Caso 1</span>
+            <strong style="margin-left: 8px;">FR 28 irpm • FC 110 bpm • SpO₂ 91% • Febre 38,5 °C</strong>
+          </div>
+          <button class="btn-investigate" onclick="toggleCase('c1')">Ver Resposta do Detetive</button>
+        </div>
+        <div id="c1" class="detective-solution">
+          <p><strong>O que está acontecendo:</strong> Infecção ativa provocando febre e inflamação no pulmão. A respiração acelerou para 28 e o coração para 110 para tentar suprir a falta de ar.</p>
+          <p><strong>Ação do Técnico:</strong> Elevar cabeceira, checar se há secreção, medicar para febre conforme prescrição e comunicar o enfermeiro sobre a queda de saturação.</p>
+        </div>
+      </div>
+
+      <!-- Caso 2 -->
+      <div class="detective-card" style="border-left: 4px solid var(--danger);">
+        <div class="detective-top">
+          <div>
+            <span class="case-badge-pill" style="background: var(--danger);">Caso 2 (Perigo Silencioso)</span>
+            <strong style="margin-left: 8px;">FR 8 irpm • FC 52 bpm • SpO₂ 89% • Paciente muito "grogue"/sonolento</strong>
+          </div>
+          <button class="btn-investigate" onclick="toggleCase('c2')">Ver Resposta do Detetive</button>
+        </div>
+        <div id="c2" class="detective-solution">
+          <p style="color: var(--danger-dark); font-weight: 700;">🚨 RISCO IMINENTE DE PARADA RESPIRATÓRIA!</p>
+          <p><strong>O que está acontecendo:</strong> Respirar só 8 vezes por minuto é perigosíssimo! O paciente está parando de respirar por cansaço extremo ou excesso de sedativos/remédios fortes.</p>
+          <p><strong>Ação do Técnico:</strong> Chamar a equipe médica imediatamente em voz alta, acordar o paciente, preparar bolsa-válvula-máscara (Ambu) e carrinho de emergência.</p>
+        </div>
+      </div>
+
+      <!-- Quiz Rápido -->
+      <h3 style="font-size: 1.05rem; margin: 28px 0 14px 0; color: #0f172a;">Teste Rápido de Fixação (Clique na alternativa que achar certa):</h3>
+
+      <!-- Pergunta 1 -->
+      <div class="quiz-item" id="q1-box">
+        <div class="quiz-q">1. Ao verificar um paciente com falta de ar, você nota que as costelas dele estão "afundando" a cada inspiração e ele respira 32 vezes por minuto. Esse sinal se chama:</div>
+        <div class="quiz-choices">
+          <button class="btn-choice" onclick="answerQ(1, this, false)">A) Bradipneia fisiológica normal.</button>
+          <button class="btn-choice" onclick="answerQ(1, this, true)">B) Taquipneia com Tiragem (esforço respiratório grave).</button>
+          <button class="btn-choice" onclick="answerQ(1, this, false)">C) Respiração de repouso confortável.</button>
+        </div>
+        <div class="quiz-feedback-box" id="fb-1"></div>
+      </div>
+
+      <!-- Pergunta 2 -->
+      <div class="quiz-item" id="q2-box">
+        <div class="quiz-q">2. Por que a SpO₂ (oxímetro) pode marcar 82% no dedo de uma paciente com as mãos muito geladas, mesmo que ela esteja respirando bem?</div>
+        <div class="quiz-choices">
+          <button class="btn-choice" onclick="answerQ(2, this, true)">A) O frio contrai os vasinhos da ponta do dedo (baixa perfusão), dificultando a leitura da luz do aparelho.</button>
+          <button class="btn-choice" onclick="answerQ(2, this, false)">B) Porque o oxigênio evapora da pele quando está frio.</button>
+          <button class="btn-choice" onclick="answerQ(2, this, false)">C) Porque o sangue para de circular no corpo todo quando as mãos esfriam.</button>
+        </div>
+        <div class="quiz-feedback-box" id="fb-2"></div>
+      </div>
+
+      <!-- Checklist de Competências -->
+      <div class="check-box-wrap">
+        <h4 style="font-size: 1rem; color: #0f172a; margin-bottom: 4px;">✅ Checklist de Conquistas da Trilha</h4>
+        <p style="font-size: 0.85rem; color: #64748b;">Marque o que você já aprendeu para acompanhar seu progresso:</p>
+        <div class="bar-bg">
+          <div class="bar-fill" id="bar-fill"></div>
+        </div>
+        <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary); margin-bottom: 12px;" id="count-lbl">
+          0 de 6 habilidades dominadas (0%)
+        </div>
+
+        <div class="checklist-row">
+          <input type="checkbox" id="ck1" onchange="calcProgress()">
+          <label for="ck1">Sei a diferença entre Taquipneia (rápida) e Bradipneia (lenta).</label>
+        </div>
+        <div class="checklist-row">
+          <input type="checkbox" id="ck2" onchange="calcProgress()">
+          <label for="ck2">Entendi que a Pneumonia enche os alvéolos de pus, bloqueando o oxigênio.</label>
+        </div>
+        <div class="checklist-row">
+          <input type="checkbox" id="ck3" onchange="calcProgress()">
+          <label for="ck3">Sei que na Asma os brônquios apertam e que o paciente NUNCA deve ser chamado de "apenas ansioso".</label>
+        </div>
+        <div class="checklist-row">
+          <input type="checkbox" id="ck4" onchange="calcProgress()">
+          <label for="ck4">Sei que na suspeita de Embolia (TEP) o paciente não pode andar e precisa de socorro imediato.</label>
+        </div>
+        <div class="checklist-row">
+          <input type="checkbox" id="ck5" onchange="calcProgress()">
+          <label for="ck5">Sei colocar o paciente em posição de Fowler (sentado/elevado) para ajudar a respirar.</label>
+        </div>
+        <div class="checklist-row">
+          <input type="checkbox" id="ck6" onchange="calcProgress()">
+          <label for="ck6">Gravo na memória os alertas vermelhos: confusão mental + falta de ar = emergência!</label>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Rodapé Pedagógico -->
+    <footer style="text-align: center; padding: 30px 20px; color: #64748b; font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 40px;">
+      <p style="font-weight: 700; color: #0f172a; margin-bottom: 4px;">
+        🩺 Aplicativo Educacional Interativo de Enfermagem
+      </p>
+      <p>Desenvolvido com carinho e rigor pedagógico pelo <strong>Prof. Breno Gomes</strong> para o ensino técnico de Enfermagem.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    // 1. Interactive Breathing Simulator Logic
+    function setBreathingPattern(pattern, btn) {
+      document.querySelectorAll('.btn-sim').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const lung = document.getElementById('lung-svg');
+      const title = document.getElementById('sim-title');
+      const rate = document.getElementById('sim-rate');
+      const desc = document.getElementById('sim-desc');
+
+      lung.className = 'animated-lungs';
+
+      if (pattern === 'normal') {
+        lung.classList.add('breathe-normal');
+        title.innerHTML = '🟢 Respiração Normal (Eupneia)';
+        title.style.color = '#38bdf8';
+        rate.innerHTML = '16 <span style="font-size: 1rem; color: #94a3b8; font-weight: 500;">irpm</span>';
+        rate.style.color = '#38bdf8';
+        desc.innerText = 'Movimento suave, rítmico e sem esforço. O tórax se eleva com tranquilidade e o paciente respira sem precisar usar força no pescoço.';
+      } else if (pattern === 'fast') {
+        lung.classList.add('breathe-fast');
+        title.innerHTML = '🔴 Respiração Acelerada (Taquipneia)';
+        title.style.color = '#f87171';
+        rate.innerHTML = '32 <span style="font-size: 1rem; color: #94a3b8; font-weight: 500;">irpm (Muito Rápida!)</span>';
+        rate.style.color = '#f87171';
+        desc.innerText = 'Movimentos curtos, rápidos e ofegantes. O paciente tenta puxar ar desesperadamente para compensar a falta de oxigênio no sangue ou febre alta.';
+      } else if (pattern === 'slow') {
+        lung.classList.add('breathe-slow');
+        title.innerHTML = '⚠️ Respiração Muito Lenta (Bradipneia)';
+        title.style.color = '#f59e0b';
+        rate.innerHTML = '8 <span style="font-size: 1rem; color: #94a3b8; font-weight: 500;">irpm (Perigo de Parada!)</span>';
+        rate.style.color = '#f59e0b';
+        desc.innerText = 'Movimento frouxo, espaçado e fraco. O paciente quase não expande o peito. Muito comum em overdose de sedativos, coma ou exaustão muscular terminal.';
+      } else if (pattern === 'effort') {
+        lung.classList.add('breathe-effort');
+        title.innerHTML = '🚨 Respiração com Grande Esforço (Tiragem)';
+        title.style.color = '#fbbf24';
+        rate.innerHTML = '28 <span style="font-size: 1rem; color: #94a3b8; font-weight: 500;">irpm + Músculos Acessórios</span>';
+        rate.style.color = '#fbbf24';
+        desc.innerText = 'O tórax repuxa bruscamente. Os músculos do pescoço ficam tensos e os espaços entre as costelas afundam para tentar forçar o ar a entrar.';
+      }
+    }
+
+    // 2. Alveoli Viewer Tabs
+    function showAlveoli(type, btn) {
+      document.querySelectorAll('.btn-alv').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('alv-view-normal').style.display = 'none';
+      document.getElementById('alv-view-pneumonia').style.display = 'none';
+      document.getElementById('alv-view-asma').style.display = 'none';
+
+      document.getElementById('alv-view-' + type).style.display = 'grid';
+    }
+
+    // 3. Pathology Navigation
+    function switchDisease(disId, btn) {
+      document.querySelectorAll('.btn-patho').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.patho-body').forEach(b => b.classList.remove('active'));
+      const activeEl = document.getElementById('dis-' + disId);
+      if (activeEl) activeEl.classList.add('active');
+    }
+
+    // 4. Vital Signs Monitor Simulator
+    const patientData = {
+      1: {
+        fr: "16", frSt: "Normal", frClass: "status-ok",
+        spo2: "98%", spo2St: "Excelente", spo2Class: "status-ok",
+        fc: "76", fcSt: "Normal", fcClass: "status-ok",
+        pa: "120×80", paSt: "Normotenso", paClass: "status-ok",
+        temp: "36,5", tempSt: "Afebril", tempClass: "status-ok",
+        title: "Análise Clínica: Paciente Estável",
+        desc: "Todos os parâmetros estão em harmonia. O pulmão está oxigenando perfeitamente o sangue (98%), por isso o coração não precisa se desgastar batendo acelerado."
+      },
+      2: {
+        fr: "30", frSt: "Taquipneia", frClass: "status-alert",
+        spo2: "89%", spo2St: "Hipoxemia", spo2Class: "status-alert",
+        fc: "116", fcSt: "Taquicardia", fcClass: "status-alert",
+        pa: "140×88", paSt: "Elevada", paClass: "status-alert",
+        temp: "38,7", tempSt: "Febre", tempClass: "status-alert",
+        title: "Análise Clínica: Pneumonia Infecciosa Aguda",
+        desc: "A febre aumentou o gasto de oxigênio, enquanto os alvéolos cheios de secreção derrubaram a SpO₂ para 89%. Pulmão e coração aceleraram juntos para tentar compensar."
+      },
+      3: {
+        fr: "34", frSt: "Taquipneia Severa", frClass: "status-alert",
+        spo2: "90%", spo2St: "Queda de O₂", spo2Class: "status-alert",
+        fc: "128", fcSt: "Taquicardia Alta", fcClass: "status-alert",
+        pa: "155×95", paSt: "Hipertensão por estresse", paClass: "status-alert",
+        temp: "36,6", tempSt: "Afebril", tempClass: "status-ok",
+        title: "Análise Clínica: Crise Asmática Grave",
+        desc: "Bronquíolos apertados! O paciente não consegue expelir o ar direito, gerando grande esforço respiratório com chiado no peito e disparo cardíaco por adrenalina e sufocamento."
+      },
+      4: {
+        fr: "9", frSt: "Bradipneia Crítica", frClass: "status-alert",
+        spo2: "84%", spo2St: "Hipoxemia Grave", spo2Class: "status-alert",
+        fc: "54", fcSt: "Bradicardia", fcClass: "status-alert",
+        pa: "85×50", paSt: "Hipotensão", paClass: "status-alert",
+        temp: "35,4", tempSt: "Hipotermia", tempClass: "status-alert",
+        title: "Análise Clínica: CÓDIGO VERMELHO - Exaustão / Choque",
+        desc: "O pulmão cansou e o cérebro está apagando. O coração começou a desacelerar por falta de oxigênio. Risco imediato de parada se não houver intubação e suporte intensivo!"
+      }
+    };
+
+    function loadPatient(id, btn) {
+      document.querySelectorAll('.btn-pat').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const data = patientData[id];
+
+      document.getElementById('mon-fr').innerText = data.fr;
+      const frSt = document.getElementById('mon-fr-st');
+      frSt.innerText = data.frSt;
+      frSt.className = 'ch-status ' + data.frClass;
+
+      document.getElementById('mon-spo2').innerText = data.spo2;
+      const spo2St = document.getElementById('mon-spo2-st');
+      spo2St.innerText = data.spo2St;
+      spo2St.className = 'ch-status ' + data.spo2Class;
+
+      document.getElementById('mon-fc').innerText = data.fc;
+      const fcSt = document.getElementById('mon-fc-st');
+      fcSt.innerText = data.fcSt;
+      fcSt.className = 'ch-status ' + data.fcClass;
+
+      document.getElementById('mon-pa').innerText = data.pa;
+      const paSt = document.getElementById('mon-pa-st');
+      paSt.innerText = data.paSt;
+      paSt.className = 'ch-status ' + data.paClass;
+
+      document.getElementById('mon-temp').innerText = data.temp;
+      const tempSt = document.getElementById('mon-temp-st');
+      tempSt.innerText = data.tempSt;
+      tempSt.className = 'ch-status ' + data.tempClass;
+
+      document.getElementById('mon-analysis-title').innerText = data.title;
+      document.getElementById('mon-analysis-desc').innerText = data.desc;
+    }
+
+    // 5. Detective Case Reveal
+    function toggleCase(caseId) {
+      const el = document.getElementById(caseId);
+      if (el.style.display === 'block') {
+        el.style.display = 'none';
+      } else {
+        el.style.display = 'block';
+      }
+    }
+
+    // 6. Quiz Handler
+    function answerQ(qNum, btn, isCorrect) {
+      const box = document.getElementById('q' + qNum + '-box');
+      const buttons = box.querySelectorAll('.btn-choice');
+      const fb = document.getElementById('fb-' + qNum);
+
+      buttons.forEach(b => b.style.pointerEvents = 'none');
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        fb.className = 'quiz-feedback-box feedback-correct';
+        if (qNum === 1) {
+          fb.innerHTML = '✅ <strong>Correto!</strong> Frequência Respiratória de 32 irpm com afundamento de costelas é Taquipneia com Tiragem, indicando grande esforço respiratório e risco de cansaço muscular.';
+        } else {
+          fb.innerHTML = '✅ <strong>Correto!</strong> Mão fria causa vasoconstrição periférica. O sangue passa devagar e a luz do sensor do oxímetro não consegue ler direito. Antes de se apavorar, aqueça a mão do paciente e troque de dedo.';
+        }
+      } else {
+        btn.classList.add('wrong');
+        fb.className = 'quiz-feedback-box feedback-wrong';
+        if (qNum === 1) {
+          fb.innerHTML = '❌ <strong>Incorreto.</strong> Uma frequência respiratória de 32 irpm com afundamento muscular nunca é normal: é Taquipneia associada a esforço (Tiragem).';
+        } else {
+          fb.innerHTML = '❌ <strong>Incorreto.</strong> O oxigênio não evapora. O frio fecha os vasinhos da ponta dos dedos, diminuindo a circulação de sangue no local da leitura do aparelho.';
+        }
+      }
+    }
+
+    // 7. Checklist Progress
+    function calcProgress() {
+      const cks = document.querySelectorAll('.checklist-row input');
+      let done = 0;
+      cks.forEach(c => { if(c.checked) done++; });
+      const pct = Math.round((done / cks.length) * 100);
+      document.getElementById('bar-fill').style.width = pct + '%';
+      document.getElementById('count-lbl').innerText = `${done} de ${cks.length} habilidades dominadas (${pct}%)`;
+    }
+  </script>
+</body>
+</html>
